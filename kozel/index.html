@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Козёл прикол</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+      color: white;
+    }
+    .wrapper {
+      text-align: center;
+      background: #222;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #00ffaa55;
+    }
+    #goat {
+      max-width: 300px;
+      transition: transform 0.05s;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #fff4;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #0f0;
+      text-shadow: 0 0 5px #0f08;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Двигаешь мышку — козёл орёт!</h1>
+    <img id="goat" src="goat1.png" alt="Козел">
+    <audio id="scream" src="scream.mp3"></audio>
+  </div>
+  <script>
+    const goat = document.getElementById("goat");
+    const audio = document.getElementById("scream");
+    let flip = false;
+    let frame = 1;
+
+    document.body.addEventListener("mousemove", () => {
+      frame = frame === 1 ? 2 : 1;
+      goat.src = "goat" + frame + ".png";
+      flip = !flip;
+      goat.style.transform = `scaleX(${flip ? 1 : -1}) rotate(${Math.random() * 6 - 3}deg) translateY(${Math.random() * 5 - 2}px)`;
+      if (audio.paused) {
+        audio.play();
+      }
+    });
+  </script>
+</body>
+</html>

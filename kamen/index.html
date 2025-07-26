@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Швыряй камень</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle, #d6d6d6, #999);
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    h1 {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 2rem;
+      color: #333;
+      text-shadow: 1px 1px 0 #fff;
+    }
+    img {
+      position: absolute;
+      cursor: grab;
+      width: 100px;
+      transition: transform 0.2s ease;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Кликни по камню и швыряй!</h1>
+  <img src="rock.png" id="rock">
+  <script>
+    const rock = document.getElementById("rock");
+    let isDragging = false;
+
+    rock.onmousedown = function(e) {
+      isDragging = true;
+      document.body.style.cursor = "grabbing";
+    };
+
+    document.onmouseup = function(e) {
+      if (isDragging) {
+        rock.style.transition = "all 0.6s ease-out";
+        rock.style.transform = `translate(${(Math.random() - 0.5) * 1000}px, ${(Math.random() - 0.5) * 800}px) rotate(${Math.random() * 720}deg)`;
+        setTimeout(() => {
+          rock.style.transition = "none";
+          rock.style.transform = "translate(-50%, -50%)";
+        }, 800);
+      }
+      isDragging = false;
+      document.body.style.cursor = "default";
+    };
+  </script>
+</body>
+</html>

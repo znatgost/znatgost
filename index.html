@@ -2,17 +2,52 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Прикольный сайт</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Мой прикольный сайт</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(145deg, #1f1f1f, #111);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 4px #000;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 1rem 0;
+    }
+    a {
+      text-decoration: none;
+      background: #00ffaa;
+      color: #000;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow: 0 0 15px #00ffaa77;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #00ffaaaa;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Добро пожаловать!</h1>
-    <p>Скоро тут будут приколюхи 😎</p>
-    <button id="btn">Нажми, если не боишься</button>
-  </div>
-
-  <script src="script.js"></script>
+  <h1>Добро пожаловать!</h1>
+  <ul>
+    <li><a href="kozel/">🐐 Козёл кричит</a></li>
+    <li><a href="kamen/">🪨 Швыряй камень</a></li>
+  </ul>
 </body>
 </html>
