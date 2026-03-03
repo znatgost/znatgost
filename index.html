@@ -1,53 +1,251 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Мой прикольный сайт</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(145deg, #1f1f1f, #111);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 2rem;
-      text-shadow: 2px 2px 4px #000;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      margin: 1rem 0;
-    }
-    a {
-      text-decoration: none;
-      background: #00ffaa;
-      color: #000;
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      font-weight: bold;
-      box-shadow: 0 0 15px #00ffaa77;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    a:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #00ffaaaa;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мой сайт</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Nunito:wght@400;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #faf9f6;
+    --ink: #1a1a2e;
+    --muted: #6b7280;
+    --card-bg: #ffffff;
+    --shadow: rgba(0,0,0,0.08);
+  }
+
+  body {
+    background: var(--bg);
+    font-family: 'Nunito', sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* Dotted background */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.5;
+    pointer-events: none; z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 60px 24px 80px; }
+
+  /* Header */
+  header { text-align: center; margin-bottom: 56px; }
+
+  .site-title {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(48px, 8vw, 80px);
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 10px;
+    position: relative; display: inline-block;
+  }
+
+  .site-title::after {
+    content: '';
+    position: absolute; bottom: 4px; left: 0; right: 0; height: 6px;
+    background: #fbbf24; border-radius: 3px; opacity: 0.7;
+    z-index: -1;
+  }
+
+  .site-sub {
+    font-size: 15px; color: var(--muted); font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  /* Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-decoration: none; color: inherit;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 12px var(--shadow), 0 0 0 0 transparent;
+    transition: transform 0.2s cubic-bezier(.34,1.56,.64,1),
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+    cursor: pointer;
+    position: relative; overflow: hidden;
+    display: block;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--card-accent, #f3f4f6);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    border-color: var(--card-color, #e5e7eb);
+  }
+  .card:hover::before { opacity: 0.08; }
+
+  .card-emoji {
+    font-size: 42px;
+    margin-bottom: 14px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+
+  .card-title {
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    color: var(--ink);
+    position: relative;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    font-weight: 600;
+    position: relative;
+  }
+
+  .card-tag {
+    position: absolute; top: 16px; right: 16px;
+    font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 100px;
+    background: var(--card-color, #e5e7eb);
+    color: var(--card-color-dark, #6b7280);
+  }
+
+  /* Color variants */
+  .c-blue   { --card-color: #dbeafe; --card-color-dark: #2563eb; --card-accent: #3b82f6; }
+  .c-green  { --card-color: #d1fae5; --card-color-dark: #059669; --card-accent: #10b981; }
+  .c-yellow { --card-color: #fef3c7; --card-color-dark: #d97706; --card-accent: #f59e0b; }
+  .c-pink   { --card-color: #fce7f3; --card-color-dark: #db2777; --card-accent: #ec4899; }
+  .c-purple { --card-color: #ede9fe; --card-color-dark: #7c3aed; --card-accent: #8b5cf6; }
+  .c-orange { --card-color: #ffedd5; --card-color-dark: #ea580c; --card-accent: #f97316; }
+  .c-red    { --card-color: #fee2e2; --card-color-dark: #dc2626; --card-accent: #ef4444; }
+  .c-teal   { --card-color: #ccfbf1; --card-color-dark: #0d9488; --card-accent: #14b8a6; }
+
+  /* Big card */
+  .card.big {
+    grid-column: span 2;
+    padding: 36px 32px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .card.big .card-emoji { font-size: 64px; margin-bottom: 0; flex-shrink: 0; }
+  .card.big .card-title { font-size: 22px; }
+  .card.big .card-desc { font-size: 14px; }
+  @media (max-width: 560px) {
+    .card.big { grid-column: span 1; flex-direction: column; }
+  }
+
+  /* Footer */
+  footer {
+    text-align: center; margin-top: 64px;
+    font-size: 13px; color: var(--muted); font-weight: 600;
+  }
+  footer a { color: var(--ink); }
+
+  /* Animate in */
+  .card {
+    animation: fadeUp 0.5s ease backwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card:nth-child(1)  { animation-delay: 0.05s; }
+  .card:nth-child(2)  { animation-delay: 0.10s; }
+  .card:nth-child(3)  { animation-delay: 0.15s; }
+  .card:nth-child(4)  { animation-delay: 0.20s; }
+  .card:nth-child(5)  { animation-delay: 0.25s; }
+  .card:nth-child(6)  { animation-delay: 0.30s; }
+  .card:nth-child(7)  { animation-delay: 0.35s; }
+  .card:nth-child(8)  { animation-delay: 0.40s; }
+</style>
 </head>
 <body>
-  <h1>Добро пожаловать!</h1>
-  <ul>
-    <li><a href="kozel/">🐐 Козёл кричит</a></li>
-    <li><a href="kamen/">🪨 Швыряй камень</a></li>
-  </ul>
+<div class="wrap">
+
+  <header>
+    <div class="site-title">мой сайт</div>
+    <p class="site-sub">Интерактивные штуки, которые я сделал&nbsp;✦</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- Пример большой карточки — замени содержимое -->
+    <a href="projects/counter.html" class="card big c-blue">
+      <span class="card-emoji">🌍</span>
+      <div>
+        <div class="card-title">Счётчик населения Земли</div>
+        <div class="card-desc">Смотри как каждую секунду растёт население планеты в реальном времени</div>
+      </div>
+      <div class="card-tag">Новое</div>
+    </a>
+
+    <!-- Маленькие карточки — замени на свои проекты -->
+    <a href="projects/random.html" class="card c-yellow">
+      <span class="card-emoji">🎲</span>
+      <div class="card-title">Генератор решений</div>
+      <div class="card-desc">Не можешь решить? Пусть рандом выберет за тебя</div>
+    </a>
+
+    <a href="projects/timer.html" class="card c-green">
+      <span class="card-emoji">⏳</span>
+      <div class="card-title">Обратный отсчёт</div>
+      <div class="card-desc">До важного события осталось...</div>
+    </a>
+
+    <a href="projects/quiz.html" class="card c-purple">
+      <span class="card-emoji">🧠</span>
+      <div class="card-title">Тест на IQ</div>
+      <div class="card-desc">Быстрый тест с неожиданным результатом</div>
+    </a>
+
+    <a href="projects/clicker.html" class="card c-orange">
+      <span class="card-emoji">👆</span>
+      <div class="card-title">Кликер</div>
+      <div class="card-desc">Просто кликай. Посмотрим сколько сможешь</div>
+    </a>
+
+    <a href="projects/facts.html" class="card c-pink">
+      <span class="card-emoji">💡</span>
+      <div class="card-title">Факты дня</div>
+      <div class="card-desc">Случайные факты которые тебя удивят</div>
+    </a>
+
+    <a href="projects/calculator.html" class="card c-teal">
+      <span class="card-emoji">💰</span>
+      <div class="card-title">Калькулятор жизни</div>
+      <div class="card-desc">Сколько часов ты потратил на сон, еду, телефон?</div>
+    </a>
+
+    <a href="projects/palette.html" class="card c-red">
+      <span class="card-emoji">🎨</span>
+      <div class="card-title">Генератор палитр</div>
+      <div class="card-desc">Красивые сочетания цветов нажатием кнопки</div>
+    </a>
+
+  </div>
+
+  <footer>
+    Сделано с ❤️ · <a href="https://github.com/ТВОЙ_НИКНЕЙМ" target="_blank">GitHub</a>
+  </footer>
+
+</div>
 </body>
 </html>
