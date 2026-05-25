@@ -77,7 +77,7 @@ I handle everything from game design and prototyping to release, analytics, and 
 
 - ⚡ Reduced HTML5 game load time by **40%+** via asset optimization
 - 🎯 Built reusable UI component systems for game interfaces
-- 📱 Published games on **Google Play · Yandex Games · Playgama**
+- 📱 Published games on **Google Play · Crazy Games · Playgama**
 - 🔄 Solo full-cycle dev: concept → prototype → release → support
 
 ---
