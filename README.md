@@ -54,7 +54,9 @@ I handle everything from game design and prototyping to release, analytics, and 
 
 ## 📊Stats
 
-[![Top Langs](https://vercel.app)](https://github.com/znatgost/github-readme-stats)
+![Stats](https://github-readme-stats.vercel.app/api?username=znatgost&show_icons=true)
+
+![Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=znatgost&layout=compact)
 
 ---
 
