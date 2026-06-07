@@ -52,6 +52,12 @@ I handle everything from game design and prototyping to release, analytics, and 
 
 ---
 
+## 📊Stats
+
+[![Top Langs](https://vercel.app)](https://github.com)
+
+---
+
 ## 🎮 What I Build
 
 | Area | Details |
